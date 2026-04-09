@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="uk" data-lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FlowerSeeds — Насіння квітів для вашої садиби</title>
+
+  <!-- ── Google Fonts ─────────────────────────────────────────── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- ── Bootstrap 5 ──────────────────────────────────────────── -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- ── Project CSS components ───────────────────────────────── -->
+  <link rel="stylesheet" href="src/css/base.css"     />
+  <link rel="stylesheet" href="src/css/navbar.css"   />
+  <link rel="stylesheet" href="src/css/hero.css"     />
+  <link rel="stylesheet" href="src/css/register.css" />
+  <link rel="stylesheet" href="src/css/about.css"    />
+  <link rel="stylesheet" href="src/css/gallery.css"  />
+  <link rel="stylesheet" href="src/css/footer.css"   />
+  <link rel="stylesheet" href="src/css/catalog.css"  />
+</head>
+ <body>
+
+  <!-- ============================================================
+       PETAL ANIMATION CANVAS
+       ============================================================ -->
+  <svg id="petal-canvas" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <path id="path1" d="M -60,0 C 100,200 300,-100 500,300 S 700,100 900,400 S 1100,200 1300,600" fill="none"/>
+      <path id="path2" d="M 1400,0 C 1200,150 900,50 700,350 S 400,200 200,500 S 0,300 -100,700" fill="none"/>
+      <path id="path3" d="M 300,-50 C 400,200 600,100 700,400 S 800,300 1000,600" fill="none"/>
+    </defs>
+    <g id="petal-group" opacity="0.55">
+      <ellipse id="p1" rx="9"  ry="5"   fill="#f06292" transform="rotate(30)"  />
+      <ellipse id="p2" rx="7"  ry="4"   fill="#ffca28" transform="rotate(-15)" />
+      <ellipse id="p3" rx="8"  ry="4.5" fill="#81c784" transform="rotate(60)"  />
+      <ellipse id="p4" rx="6"  ry="3.5" fill="#9c7bb5" transform="rotate(-45)" />
+      <ellipse id="p5" rx="10" ry="5.5" fill="#f48fb1" transform="rotate(20)"  />
+      <ellipse id="p6" rx="7"  ry="4"   fill="#fff176" transform="rotate(80)"  />
+    </g>
+  </svg>
+
+
+  <!-- ============================================================
+       NAVBAR
+       ============================================================ -->
+<header id="main-header">
+  <!-- Верхній рядок: Пошук, Інфо, Кошик, Вхід -->
+  
+<div class="utility-bar">
+    <div class="container d-flex align-items-center justify-content-between py-2">
+          <span class="small-text">🕒 09:00 - 18:00</span>
+         <span>📞  <a href="tel:+380961095864" class="phone-link">+380 96 109 58 64</a></span>
+
+    <!-- Пошук -->
+    <div class="search-wrapper">
+      <input type="text" id="product-search" placeholder="Пошук насіння...">
+      <!-- При кліку на лупу викликається функція пошуку -->
+      <span class="search-btn" id="trigger-search" role="button">🔍</span>
+    </div>
+
+    <div class="d-flex align-items-center gap-4">
+      <!-- Бажане -->
+      <span class="icon-item" role="button" id="open-wishlist">❤️<span id="wishlist-count">0</span></span>
+      
+      <!-- Вхід (використовуємо атрибути Bootstrap для модалки) -->
+      <span class="icon-item" role="button" data-bs-toggle="modal" data-bs-target="#modalAuth">👤</span>
+      
+      <!-- Кошик -->
+      <span class="cart-custom-pill" role="button" id="open-cart">
+        🛒 <span id="cart-count">0</span>
+      </span>
+    </div>
+
+  </div>
+  </div>
+
+  <!-- Твій оригінальний Navbar (без змін у структурі) -->
+  <nav id="navbar">
+    <div class="container">
+      <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+        <a class="navbar-brand" href="#hero">🌸 Flower<span>Seeds</span></a>
+        
+        <button class="navbar-toggler d-md-none" id="nav-toggle" type="button" aria-label="Меню">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+            <line x1="3" y1="6"  x2="21" y2="6"  />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+
+        <div class="d-flex align-items-center gap-3 flex-wrap" id="nav-menu">
+          <ul class="navbar-nav flex-row gap-1 mb-0">
+            <li><a class="nav-link" href="#register" data-i18n="nav_register">Реєстрація</a></li>
+            <li><a class="nav-link" href="#about"    data-i18n="nav_about">Про нас</a></li>
+            <li><a class="nav-link" href="#gallery"  data-i18n="nav_gallery">Галерея</a></li>
+            <li><a class="nav-link" href="#footer"   data-i18n="nav_contacts">Контакти</a></li>
+          </ul>
+          <div id="lang-switcher" role="group" aria-label="Language">
+            <button class="lang-btn active" data-lang="uk">UA</button>
+            <button class="lang-btn"        data-lang="en">EN</button>
+            <button class="lang-btn"        data-lang="pl">PL</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+  <!-- ============================================================
+       HERO SECTION
+       ============================================================ -->
+  <section id="hero">
+    <div class="container hero-content py-5">
+      <div class="row align-items-center">
+        <div class="col-lg-7">
+          <div class="leaf">
+            <span>🌱 <span data-i18n="hero_badge">100% натуральне насіння</span></span>
+          </div>
+          <h1 class="hero-title reveal">
+            <span data-i18n="hero_h1_1">Розквітніть свій сад</span><br />
+            <span class="accent"  data-i18n="hero_h1_2">яскравими квітами</span><br />
+            <span class="accent2" data-i18n="hero_h1_3">цього сезону</span>
+          </h1>
+          <p class="hero-subtitle reveal" data-i18n="hero_subtitle">
+            Понад 200 сортів насіння квітів для вашої присадибної ділянки.
+            Весна, літо, осінь — ваш сад буде в цвіту весь рік.
+          </p>
+          <div class="d-flex gap-3 flex-wrap mt-4 reveal">
+            <a href="#register" class="btn-primary-custom" data-i18n="hero_cta">Отримати каталог</a>
+            <a href="#about"    class="btn btn-outline rounded-pill px-4 fw-bold" data-i18n="hero_cta2">Дізнатись більше</a>
+          </div>
+          <div class="hero-stats reveal">
+            <div>
+              <a id="open-catalog" href="#" title="Відкрити каталог сортів" aria-haspopup="dialog">
+                <div class="hero-stat-number green">200+</div>
+              </a>
+              <div class="hero-stat-label" data-i18n="stat1_label">сортів насіння</div>
+            </div>
+            <div>
+              <div class="hero-stat-number pink">12K+</div>
+              <div class="hero-stat-label" data-i18n="stat2_label">задоволених клієнтів</div>
+            </div>
+            <div>
+              <div class="hero-stat-number lavender">98%</div>
+              <div class="hero-stat-label" data-i18n="stat3_label">схожість насіння</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Video Banner Background -->
+    <div class="hero-decor" aria-hidden="true">
+      <video autoplay muted loop playsinline class="hero-video">
+        <source src="src/img/baner.mp4" type="video/mp4">
+        Ваш браузер не підтримує відео.
+      </video>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       VIDEO + REGISTRATION FORM
+       ============================================================ -->
+  <section id="register">
+    <div class="container">
+      <div class="text-center mb-5 reveal">
+        <h2 class="section-title" data-i18n="reg_title">
+          Дивіться та <span class="accent">реєструйтесь</span>
+        </h2>
+        <div class="divider mx-auto"></div>
+        <p class="text-muted" data-i18n="reg_sub">
+          Перегляньте відео про вирощування квітів і залиште заявку на наш каталог
+        </p>
+      </div>
+
+      <div class="row g-4 align-items-start">
+        <!-- New YouTube embed -->
+        <div class="col-lg-7 reveal">
+          <div class="video-wrapper">
+            <iframe
+              src="https://www.youtube.com/embed/dJ98of_aJaQ?si=4ymxVSm8pQOheuII&rel=0&modestbranding=1"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+
+        <div class="col-lg-5 reveal">
+          <div class="form-card">
+            <h3 data-i18n="form_title">Отримайте каталог</h3>
+            <p class="sub" data-i18n="form_sub">Залиште дані — ми надішлемо безкоштовний каталог насіння</p>
+            <div class="form-group">
+              <label class="form-label" for="f-first" data-i18n="form_fname">Ім'я *</label>
+              <input type="text" id="f-first" name="first_name" class="form-control" data-i18n-placeholder="ph_fname" placeholder="Олена" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="f-last" data-i18n="form_lname">Прізвище *</label>
+              <input type="text" id="f-last" name="last_name" class="form-control" data-i18n-placeholder="ph_lname" placeholder="Іваненко" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="f-email" data-i18n="form_email">Email *</label>
+              <input type="email" id="f-email" name="email" class="form-control" data-i18n-placeholder="ph_email" placeholder="email@example.com" required />
+            </div>
+            <button type="button" id="form-submit" class="btn-submit" data-i18n="form_btn">🌸 Надіслати заявку</button>
+            <div id="form-message" role="alert" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       ABOUT / TEXT BLOCK
+       ============================================================ -->
+  <section id="about">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-8 reveal">
+          <h2 class="section-title" data-i18n="about_title">Чому обирають <span class="accent">FlowerSeeds</span>?</h2>
+          <div class="about-text">
+            <p data-i18n="about_p1"><strong>FlowerSeeds</strong> — сімейна компанія з 15-річним досвідом. Ми гарантуємо <strong>95–98% схожість</strong>.</p>
+            <p data-i18n="about_p2">Асортимент охоплює однорічні та багаторічні квіти. Кожна пачка містить <strong>інструкцію</strong>.</p>
+            <p data-i18n="about_p3"><strong>Безкоштовна консультація</strong> агронома доступна кожному покупцю.</p>
+          </div>
+        <div class="about-pills">
+  <button class="feature-pill" data-bs-toggle="modal" data-bs-target="#modalOrganic">
+    🌿 <span data-i18n="pill1">Органічне насіння</span>
+  </button>
+  <button class="feature-pill" data-bs-toggle="modal" data-bs-target="#modalDelivery">
+    📦 <span data-i18n="pill2">Доставка по Україні</span>
+  </button>
+  <button class="feature-pill" data-bs-toggle="modal" data-bs-target="#modalAgro">
+    🎓 <span data-i18n="pill3">Консультація агронома</span>
+  </button>
+</div>
+        </div>
+        <div class="col-lg-4 reveal">
+          <img src="src/img/seeds.png" alt="Seeds" class="about-illustration" /> 
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       GALLERY / IMAGE SLIDER
+       ============================================================ -->
+  <section id="gallery">
+    <div class="container">
+      <div class="text-center mb-5 reveal">
+        <h2 class="section-title" data-i18n="gallery_title">Наша <span class="accent">галерея</span></h2>
+        <div class="divider mx-auto"></div>
+      </div>
+      <div class="reveal">
+        <div class="slider-container">
+          <div class="slider-track" id="slider-track">
+            <div class="slide">
+              <img src="https://leto.ua/img/articles/1620129673_050e3debf0698ffcbe50.jpg" alt="Гортензії" loading="lazy" />
+              <div class="slide-caption"><h4 data-i18n="slide1_title">Гортензія</h4></div>
+            </div>
+            <div class="slide">
+              <img src="https://images.prom.ua/5393595287_w400_h400_podsolnechnik-dekorativnyj-krasnoe.jpg" alt="Соняшники" loading="lazy" />
+              <div class="slide-caption"><h4 data-i18n="slide2_title">Соняшник декоративний</h4></div>
+            </div>
+             <div class="slide">
+              <img src="https://dzensad.com.ua/image/cache/catalog/products/tsubylunu-ta-bylbu-kvitiv/Tiulpan/khvyliasti/Yellow-Crown/Yellow-Crown-3-700x700.jpg" alt="Тюльпани Кейзерскрон" loading="lazy" />
+              <div class="slide-caption"><h4 data-i18n="slide2_title">Тюльпани Кейзерскрон</h4></div>
+            </div>
+             <div class="slide">
+              <img src="https://procvety.net/wp-content/uploads/2021/09/1-Romashka.jpg" alt="Ромашка" loading="lazy" />
+              <div class="slide-caption"><h4 data-i18n="slide2_title">Ромашка</h4></div>
+            </div>
+             <div class="slide">
+              <img src="https://novaflora.com.ua/7230-large_default/zhorzhini-miks.jpg" alt="Жоржини" loading="lazy" />
+              <div class="slide-caption"><h4 data-i18n="slide2_title">Жоржини</h4></div>
+            </div>
+          </div>
+          <button class="slider-btn slider-btn-prev" id="slide-prev" aria-label="Попередній">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button class="slider-btn slider-btn-next" id="slide-next" aria-label="Наступний">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+        <div class="slider-dots" id="slider-dots" role="tablist">
+          <div class="dot active" data-index="0" role="tab"></div>
+          <div class="dot" data-index="1" role="tab"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+
+  <footer id="footer" class="py-5 mt-5">
+  <div class="container">
+    <div class="row gy-4">
+      
+      <!-- Колонка 1: Лого та копірайт -->
+      <div class="col-lg-3 col-md-6">
+        <a class="navbar-brand mb-3 d-block" href="#hero">🌸 Flower<span>Seeds</span></a>
+        <p class="small text-muted mb-2">© 2024—2026<br>Офіційний інтернет-магазин FlowerSeeds</p>
+       
+      </div>
+
+      <!-- Колонка 2: Каталог -->
+      <div class="col-lg-3 col-md-6">
+        <h5 class="footer-title">Каталог</h5>
+        <ul class="list-unstyled footer-links">
+          <li><a href="#">Насіння квітів</a></li>
+          <li><a href="#">Саджанці</a></li>
+          <li><a href="#">Добрива</a></li>
+          <li><a href="#">Засоби захисту</a></li>
+          <li><a href="#">Акції</a></li>
+        </ul>
+      </div>
+
+      <!-- Колонка 3: Клієнтам -->
+      <div class="col-lg-3 col-md-6">
+        <h5 class="footer-title">Клієнтам</h5>
+        <ul class="list-unstyled footer-links">
+          <li><a href="#register">Вхід до кабінету</a></li>
+          <li><a href="#about">Про компанію</a></li>
+          <li><a href="#">Оплата і доставка</a></li>
+          <li><a href="#">Гарантія</a></li>
+          <li><a href="#">Відгуки</a></li>
+        </ul>
+        <h5 class="footer-title mt-4">Ми в соцмережах</h5>
+        <div class="social-icons d-flex gap-3">
+          <a href="#">Facebook</a>
+          <a href="#">Instagram</a>
+          <a href="#">Telegram</a>
+        </div>
+      </div>
+
+      <!-- Колонка 4: Контакти -->
+      <div class="col-lg-3 col-md-6">
+        <h5 class="footer-title">Контактна інформація</h5>
+        <ul class="list-unstyled contact-list">
+          <li><span>📞</span> 096-109-58-64</li>
+          <li><span>📞</span> 093-000-00-00</li>
+          <li> Еліна Мрачковська<br />
+            📧 elina.mrachkovska@gmail.com<br />
+            🏙️ Кам'янець-Подільський, Україна
+          </li>
+          <li><a href="#" class="text-success fw-bold">Передзвонити вам?</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+  
+  <!-- Фінальний рядок підпису (вимога з твоїх даних) -->
+  <div class="container border-top mt-4 pt-3 text-center">
+    <p class="small text-muted">Best regards, Elina Mrachkovska Telegram: @ElinaLug Phone: +380961095864 Portfolio: elinamrachkovska.github.io/portfolio/ LinkedIn: https://www.linkedin.com/in/elina-mrachkovska-9a837b328/?locale=uk_UA</p>
+  </div>
+</footer>
+
+  <!-- CATALOG MODAL (Remains the same) -->
+  <div id="catalog-backdrop" aria-hidden="true"></div>
+  <div id="catalog-modal" role="dialog" aria-modal="true" aria-labelledby="catalog-title">
+    <!-- ... (catalog content) ... -->
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/MotionPathPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+  <script src="src/js/i18n.js"></script>
+  <script src="src/js/navbar.js"></script>
+  <script src="src/js/slider.js"></script>
+  <script src="src/js/form.js"></script>
+  <script src="src/js/animations.js"></script>
+  <script src="src/js/seeds-data.js"></script>
+  <script src="src/js/catalog.js"></script>
+  <!-- Modal: Organic Seeds -->
+<div class="modal fade" id="modalOrganic" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">🌿 Органічне насіння</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Органічне насіння</strong> — це насіння, отримане від рослин, які вирощувалися без використання синтетичних пестицидів, гербіцидів або мінеральних добрив.</p>
+        <ul>
+          <li>Відсутність ГМО;</li>
+          <li>Висока адаптивність до місцевих умов;</li>
+          <li>Екологічна чистота та безпека для довкілля.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Delivery -->
+<div class="modal fade" id="modalDelivery" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">📦 Способи доставки</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p>Ми відправляємо ваші замовлення щодня наступними службами:</p>
+        <div class="d-flex justify-content-around align-items-center py-3">
+          <div class="delivery-item"><strong>Нова Пошта</strong><br><small>1-2 дні</small></div>
+          <div class="delivery-item"><strong>Укрпошта</strong><br><small>3-5 днів</small></div>
+          <div class="delivery-item"><strong>Meest</strong><br><small>2-4 дні</small></div>
+        </div>
+        <p class="text-muted small">Можлива оплата при отриманні (накладений платіж).</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalAgro" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title">🎓 Консультація агронома</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-0">
+  <div id="chat-box" class="chat-container" style="height: 300px; background: #f4f7f6; overflow-y: auto; padding: 15px;">
+    <div class="chat-msg mb-3">
+      <span class="badge bg-white text-dark shadow-sm p-2">Вітаю! Я ваш віртуальний агроном. Чим можу допомогти?</span>
+    </div>
+  </div>
+  <div class="p-3 border-top">
+    <div class="input-group">
+      <input type="text" id="chat-input" class="form-control" placeholder="Напишіть повідомлення...">
+      <button id="chat-send" class="btn btn-success">Відправити</button>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

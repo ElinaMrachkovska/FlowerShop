@@ -1,0 +1,142 @@
+/* =============================================================
+   hero.css
+   Full-height landing hero section
+   ============================================================= */
+
+#hero {
+  position:    relative;
+  min-height:  85vh;
+  display:     flex;
+  align-items: center;
+  overflow:    hidden;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(240,  98, 146, 0.12) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 30%, rgba(129, 212, 250, 0.18) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 80%, rgba( 76, 175,  80, 0.12) 0%, transparent 60%),
+    var(--light-bg);
+}
+
+/* ── Content column ──────────────────────────────────────────── */
+.hero-content {
+  position: relative;
+  z-index:  2;
+}
+
+/* ── Heading ─────────────────────────────────────────────────── */
+.hero-title {
+  font-size:   clamp(2.4rem, 6vw, 4.5rem);
+  line-height: 1.1;
+  color:       var(--dark-text);
+}
+
+.hero-title .accent  { color: var(--spring-pink);  }
+.hero-title .accent2 { color: var(--spring-green); }
+
+/* ── Subtitle ────────────────────────────────────────────────── */
+.hero-subtitle {
+  font-size:  clamp(1rem, 2.5vw, 1.25rem);
+  color:      var(--mid-text);
+  max-width:  520px;
+  margin-top: 1rem;
+}
+
+/* ── Stats row ───────────────────────────────────────────────── */
+.hero-stats {
+  display:     flex;
+  gap:         2rem;
+  flex-wrap:   wrap;
+  margin-top:  1.5rem;
+}
+
+.hero-stat-number {
+  font-family: 'Playfair Display', serif;
+  font-size:   1.6rem;
+  font-weight: 900;
+}
+
+.hero-stat-number.green   { color: var(--spring-green);    }
+.hero-stat-number.pink    { color: var(--spring-pink);     }
+.hero-stat-number.lavender{ color: var(--spring-lavender); }
+
+.hero-stat-label {
+  font-size: 0.83rem;
+  color:     var(--mid-text);
+}
+
+/* ── Decorative SVG illustration (right side) ────────────────── */
+.hero-decor {
+  position: absolute; /* або relative, залежно від вашої верстки hero */
+  top: 0;
+  right: 0;
+  width: 45%;
+  height: 100%;
+  z-index: -1; /* відео має бути на фоні під текстом */
+  overflow: hidden;
+}
+
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* відео заповнить весь простір без деформації */
+  /* Опціонально: додайте прозорість, щоб текст читався краще */
+  opacity: 0.6; 
+}
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .hero-decor { display: none; }
+}
+
+
+.leaf {
+  position: relative;
+  z-index: 1;
+  top: -50px;
+  rotate: -10deg;
+  animation: pulse-on-load 1.5s ease-in-out;
+  animation-iteration-count: 2; /* тільки один раз при завантаженні */
+  
+  display: inline-block;
+  padding: 14px 28px;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(135deg, #d49638, #dfe862f4); /* помаранчевий градієнт */
+  
+  border-radius: 50px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 20px 10px rgba(255, 152, 0, 0.6);
+}
+
+/* ефект при наведенні */
+.leaf:hover {
+  transform: scale(1.2) rotate(-10deg);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+}
+
+/* ключові кадри для пульсації */
+@keyframes pulse-on-load {
+  0%   { transform: scale(1) rotate(-10deg); }
+  50%  { transform: scale(1.2) rotate(-10deg); }
+  100% { transform: scale(1) rotate(-10deg); }
+}
+
+.btn-outline {
+  display: inline-flex;          /* вирівнювання тексту по центру */
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  border: 2px solid #ff9800;     /* помаранчевий бордер */
+  color: #ff9800;                /* текст у тон бордера */
+  background: transparent;
+  border-radius: 50px;
+  padding: 0.6rem 1.5rem;
+  font-weight: bold;
+  transition: all 0.3s ease;     /* плавні ефекти */
+}
+
+.btn-outline:hover {
+  background: linear-gradient(135deg, #ff9800, #ffb74d); /* помаранчевий градієнт */
+  color: #fff;                   /* білий текст при наведенні */
+  transform: scale(1.1);         /* легке збільшення */
+  box-shadow: 0 6px 12px rgba(0,0,0,0.25); /* тінь */
+}

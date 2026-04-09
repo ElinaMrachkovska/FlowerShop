@@ -1,0 +1,99 @@
+/* =============================================================
+   navbar.css
+   Sticky navigation bar with language switcher
+   ============================================================= */
+
+#navbar {
+  position:         sticky;
+  top:              0;
+  z-index:          1000;
+  background:       rgba(237, 212, 148, 0.92);
+  backdrop-filter:  blur(20px);
+  border-bottom:    1px solid var(--spring-green-lt);
+  padding:          10px 0;
+  transition:       box-shadow var(--transition);
+  opacity: 0.9;
+}
+
+#navbar.scrolled {
+  box-shadow: 0 8px 26px rgba(76, 175, 80, 0.18);
+}
+
+/* ── Brand ───────────────────────────────────────────────────── */
+.navbar-brand {
+  font-family:    'Playfair Display', serif;
+  font-size:      1.5rem;
+  font-weight:    900;
+  color:          var(--spring-green) !important;
+  letter-spacing: -0.5px;
+  text-decoration: none;
+}
+
+.navbar-brand span {
+  color: var(--spring-pink);
+}
+
+/* ── Nav links ───────────────────────────────────────────────── */
+.nav-link {
+  font-weight:    600;
+  color:          var(--dark-text) !important;
+  padding:        0.4rem 0.9rem !important;
+  border-radius:  20px;
+  transition:     background var(--transition), color var(--transition);
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  background: linear-gradient(135deg, #4caf50, #97ea7bf4);
+  transition: background 0.3s ease-in-out, 1s;
+  color:      var(--white) !important;
+}
+
+/* ── Language switcher ───────────────────────────────────────── */
+#lang-switcher {
+  display:     flex;
+  gap:         6px;
+  align-items: center;
+}
+
+.lang-btn {
+  border:        1px solid var(--spring-green);
+  background:   var(--spring-green-lt);
+  color:         var(--dark-text);
+  font-weight:   700;
+  font-size:     0.8rem;
+  padding:       0.25rem 0.65rem;
+  border-radius: 20px;
+  cursor:        pointer;
+  transition:    background var(--transition), color var(--transition);
+}
+
+.lang-btn.active,
+.lang-btn:hover {
+  background: var(--spring-green);
+  color:      var(--white);
+}
+
+/* ── Mobile toggle button ────────────────────────────────────── */
+.navbar-toggler {
+  border:     0;
+  background: transparent;
+  cursor:     pointer;
+  color:      var(--dark-text);
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  #nav-menu {
+    width:          100%;
+    flex-direction: column;
+    align-items:    flex-start;
+    padding-top:    0.5rem;
+  }
+
+  .navbar-nav {
+    flex-direction: column !important;
+    gap:            4px;
+    width:          100%;
+  }
+}
