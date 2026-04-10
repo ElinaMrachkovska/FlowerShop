@@ -1,0 +1,123 @@
+
+:root {
+
+  --spring-green:    #4caf50;
+  --spring-green-lt: #66bb6a;
+  --spring-yellow:   #ffca28;
+  --spring-pink:     #f06292;
+  --spring-pink-dk:  #e91e8c;
+  --spring-lavender: #9c7bb5;
+  --spring-sky:      #81d4fa;
+
+
+  --cream:      #fffde7;
+  --light-bg:   #f9fbe7;
+  --white:      #ffffff;
+  --dark-text:  #2e2e2e;
+  --mid-text:   #5d5d5d;
+
+
+  --card-shadow: 0 8px 32px rgba(76, 175, 80, 0.15);
+
+
+  --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin:     0;
+  padding:    0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family:  'Nunito', sans-serif;
+  background:   var(--light-bg);
+  color:        var(--dark-text);
+  overflow-x:   hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Playfair Display', serif;
+}
+
+.section-title {
+  font-size:     clamp(1.8rem, 4vw, 2.8rem);
+  color:         var(--dark-text);
+  margin-bottom: 0.5rem;
+}
+
+.section-title .accent {
+  color: var(--spring-green);
+}
+
+.feature-pill {
+  display:       inline-flex;
+  align-items:   center;
+  gap:           0.45rem;
+  background:    var(--white);
+  border:        2px solid var(--spring-green);
+  color:         var(--spring-green);
+  font-weight:   700;
+  font-size:     0.85rem;
+  border-radius: 30px;
+  padding:       0.4rem 1rem;
+  margin:        0.3rem;
+  box-shadow:    0 3px 10px rgba(76, 175, 80, 0.1);
+}
+
+.btn-primary-custom {
+  background:    linear-gradient(135deg, var(--spring-green), var(--spring-green-lt));
+  color:         var(--white);
+  border:        none;
+  border-radius: 30px;
+  padding:       0.75rem 2rem;
+  font-weight:   700;
+  font-size:     1rem;
+  letter-spacing: 0.3px;
+  box-shadow:    0 6px 20px rgba(76, 175, 80, 0.35);
+  transition:    transform var(--transition), box-shadow var(--transition);
+  text-decoration: none;
+  display:       inline-block;
+}
+
+.btn-primary-custom:hover {
+  transform:  translateY(-3px);
+  box-shadow: 0 10px 30px rgba(76, 175, 80, 0.45);
+  color:      var(--white);
+}
+
+.reveal {
+  opacity:    0;
+  transform:  translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity:   1;
+  transform: translateY(0);
+}
+
+#petal-canvas {
+  position:       fixed;
+  top:            0;
+  left:           0;
+  width:          100%;
+  height:         100%;
+  pointer-events: none;
+  z-index:        0;
+  overflow:       hidden;
+}
+
+section,
+nav,
+footer {
+  position: relative;
+  z-index:  1;
+}
+

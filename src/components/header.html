@@ -1,0 +1,82 @@
+<svg id="petal-canvas" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <path id="path1" d="M -60,0 C 100,200 300,-100 500,300 S 700,100 900,400 S 1100,200 1300,600" fill="none"/>
+    <path id="path2" d="M 1400,0 C 1200,150 900,50 700,350 S 400,200 200,500 S 0,300 -100,700" fill="none"/>
+    <path id="path3" d="M 300,-50 C 400,200 600,100 700,400 S 800,300 1000,600" fill="none"/>
+  </defs>
+  <g id="petal-group" opacity="0.55">
+    <ellipse id="p1" rx="9"  ry="5"   fill="#f06292" transform="rotate(30)"  />
+    <ellipse id="p2" rx="7"  ry="4"   fill="#ffca28" transform="rotate(-15)" />
+    <ellipse id="p3" rx="8"  ry="4.5" fill="#81c784" transform="rotate(60)"  />
+    <ellipse id="p4" rx="6"  ry="3.5" fill="#9c7bb5" transform="rotate(-45)" />
+    <ellipse id="p5" rx="10" ry="5.5" fill="#f48fb1" transform="rotate(20)"  />
+    <ellipse id="p6" rx="7"  ry="4"   fill="#fff176" transform="rotate(80)"  />
+  </g>
+</svg>
+
+<div id="main-header">
+  <div class="utility-bar">
+    <div class="container d-flex align-items-center justify-content-between py-2 flex-wrap gap-2">
+      <span class="small-text">&#128336; 09:00&#8211;18:00</span>
+      <span>&#128222; <a href="tel:+380961095864" class="phone-link">+380 96 109 58 64</a></span>
+
+      <div class="search-wrapper">
+        <input type="text" id="product-search" placeholder="&#1055;&#1086;&#1096;&#1091;&#1082; &#1085;&#1072;&#1089;&#1110;&#1085;&#1085;&#1103;..." autocomplete="off" />
+        <span class="search-btn" id="trigger-search" role="button" aria-label="&#1055;&#1086;&#1096;&#1091;&#1082;">&#128269;</span>
+        <div id="search-results" class="search-dropdown"></div>
+      </div>
+
+      <div class="d-flex align-items-center gap-4">
+
+        <span class="icon-item" role="button" id="open-wishlist"
+              style="position:relative" aria-label="&#1057;&#1087;&#1080;&#1089;&#1086;&#1082; &#1073;&#1072;&#1078;&#1072;&#1085;&#1100;">
+          &#10084;&#65039;<span id="wishlist-count">0</span>
+        </span>
+
+        <div class="auth-wrapper" style="position:relative">
+          <span id="user-icon-btn" class="icon-item" role="button"
+                tabindex="0" aria-label="&#1059;&#1074;&#1110;&#1081;&#1090;&#1080;" title="&#1059;&#1074;&#1110;&#1081;&#1090;&#1080;">&#128100;</span>
+         
+                <span id="user-greeting" class="user-greeting" aria-live="polite">
+            <span id="user-avatar" class="user-avatar"></span>
+            <span id="greeting-name"></span>
+            <span id="btn-logout" class="btn-logout" role="button" tabindex="0">&#1042;&#1080;&#1081;&#1090;&#1080;</span>
+          </span>
+        </div>
+
+        <span class="cart-custom-pill" role="button" id="open-cart" aria-label="&#1050;&#1086;&#1096;&#1080;&#1082;">
+          &#128722; <span id="cart-count">0</span>
+        </span>
+
+      </div>
+    </div>
+  </div>
+
+  <nav id="navbar">
+    <div class="container">
+      <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+        <a class="navbar-brand" href="#hero">&#127800; Flower<span>Seeds</span></a>
+        <button class="navbar-toggler d-md-none" id="nav-toggle" type="button" aria-label="&#1052;&#1077;&#1085;&#1102;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <line x1="3" y1="6"  x2="21" y2="6"  />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+        <div class="d-flex align-items-center gap-3 flex-wrap" id="nav-menu">
+          <ul class="navbar-nav flex-row gap-1 mb-0">
+            <li><a class="nav-link" href="#register" data-i18n="nav_register">&#1056;&#1077;&#1108;&#1089;&#1090;&#1088;&#1072;&#1094;&#1110;&#1103;</a></li>
+            <li><a class="nav-link" href="#about"    data-i18n="nav_about">&#1055;&#1088;&#1086; &#1085;&#1072;&#1089;</a></li>
+            <li><a class="nav-link" href="#gallery"  data-i18n="nav_gallery">&#1043;&#1072;&#1083;&#1077;&#1088;&#1077;&#1103;</a></li>
+            <li><a class="nav-link" href="#footer"   data-i18n="nav_contacts">&#1050;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090;&#1080;</a></li>
+          </ul>
+          <div id="lang-switcher" role="group" aria-label="Language">
+            <button class="lang-btn active" data-lang="uk">UA</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="pl">PL</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
