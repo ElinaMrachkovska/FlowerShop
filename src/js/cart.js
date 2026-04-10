@@ -1,31 +1,13 @@
-/**
- * cart.js
- * -------
- * Shopping cart and wishlist management.
- *
- * Storage: localStorage
- *   'fs_cart'     → [{ id, name, latin, emoji, price, qty }]
- *   'fs_wishlist' → [{ id, name, latin, emoji, price }]
- *
- * Exposes globally: addToCart(seed), addToWishlist(seed),
- *                   openCart(), openWishlist()
- */
-
-/* ── Fake price generator (deterministic by id) ─────────────── */
 function seedPrice(id) {
   const base = [29, 35, 42, 49, 55, 62, 68, 75][id % 8];
   return base + (id % 5) * 4;
 }
 
-/* ── Storage ─────────────────────────────────────────────────── */
 function getCart()     { return JSON.parse(localStorage.getItem('fs_cart')     || '[]'); }
 function getWishlist() { return JSON.parse(localStorage.getItem('fs_wishlist') || '[]'); }
 function saveCart(c)   { localStorage.setItem('fs_cart',     JSON.stringify(c)); }
 function saveWishlist(w){ localStorage.setItem('fs_wishlist', JSON.stringify(w)); }
 
-/* ── Cart operations ─────────────────────────────────────────── */
-
-/** Add a seed to cart (or increase qty if already present). */
 function addToCart(seed) {
   const cart = getCart();
   const idx  = cart.findIndex(i => i.id === seed.id);
@@ -41,14 +23,12 @@ function addToCart(seed) {
   flashBadge('cart-count');
 }
 
-/** Remove one item from cart. */
 function removeFromCart(id) {
   saveCart(getCart().filter(i => i.id !== id));
   updateCartBadge();
   renderCart();
 }
 
-/** Change quantity of a cart item. */
 function changeQty(id, delta) {
   const cart = getCart();
   const idx  = cart.findIndex(i => i.id === id);
@@ -59,9 +39,6 @@ function changeQty(id, delta) {
   renderCart();
 }
 
-/* ── Wishlist operations ─────────────────────────────────────── */
-
-/** Toggle a seed in wishlist. Returns true if added, false if removed. */
 function toggleWishlist(seed) {
   const list = getWishlist();
   const idx  = list.findIndex(i => i.id === seed.id);
@@ -82,12 +59,10 @@ function toggleWishlist(seed) {
   }
 }
 
-/** Check if a seed is in wishlist */
 function isWished(id) {
   return getWishlist().some(i => i.id === id);
 }
 
-/* ── Badge counters ──────────────────────────────────────────── */
 function updateCartBadge() {
   const total = getCart().reduce((s, i) => s + i.qty, 0);
   const el = document.getElementById('cart-count');
@@ -99,7 +74,6 @@ function updateWishlistBadge() {
   if (el) el.textContent = getWishlist().length;
 }
 
-/** Brief scale animation on badge update */
 function flashBadge(id) {
   const el = document.getElementById(id);
   if (!el) return;
@@ -107,7 +81,6 @@ function flashBadge(id) {
   setTimeout(() => { el.style.transform = ''; }, 250);
 }
 
-/* ── Render Cart panel ───────────────────────────────────────── */
 function renderCart() {
   const body   = document.getElementById('cart-body');
   const footer = document.getElementById('cart-footer');
@@ -152,7 +125,6 @@ function renderCart() {
   }
 }
 
-/* ── Render Wishlist panel ───────────────────────────────────── */
 function renderWishlist() {
   const body = document.getElementById('wishlist-body');
   if (!body) return;
@@ -179,7 +151,6 @@ function renderWishlist() {
     </div>`
   ).join('');
 
-  // Sync ♡ buttons in catalog if open
   syncWishButtons();
 }
 
@@ -191,7 +162,6 @@ function removeFromWishlist(id) {
   syncWishButtons();
 }
 
-/** Move item from wishlist to cart */
 function moveWishToCart(id) {
   const item = getWishlist().find(i => i.id === id);
   if (!item) return;
@@ -199,7 +169,6 @@ function moveWishToCart(id) {
   removeFromWishlist(id);
 }
 
-/** Sync ♡ button styles in catalog grid */
 function syncWishButtons() {
   document.querySelectorAll('.btn-add-wish').forEach(btn => {
     const id = Number(btn.dataset.id);
@@ -208,7 +177,6 @@ function syncWishButtons() {
   });
 }
 
-/* ── Checkout stub ───────────────────────────────────────────── */
 function handleCheckout() {
   const session = JSON.parse(localStorage.getItem('fs_session') || 'null');
   if (!session) {
@@ -225,7 +193,6 @@ function handleCheckout() {
   closeSidePanel('cart-panel');
 }
 
-/* ── Side panel open / close ─────────────────────────────────── */
 function openSidePanel(panelId) {
   document.getElementById(panelId)?.classList.add('open');
   document.getElementById('panel-backdrop')?.classList.add('open');
@@ -234,7 +201,6 @@ function openSidePanel(panelId) {
 
 function closeSidePanel(panelId) {
   document.getElementById(panelId)?.classList.remove('open');
-  // Only remove backdrop if both panels are closed
   const anyOpen = document.querySelector('.side-panel.open');
   if (!anyOpen) {
     document.getElementById('panel-backdrop')?.classList.remove('open');
@@ -245,24 +211,19 @@ function closeSidePanel(panelId) {
 function openCart()     { renderCart();     openSidePanel('cart-panel'); }
 function openWishlist() { renderWishlist(); openSidePanel('wishlist-panel'); }
 
-/* ── DOM wiring ──────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* Open buttons */
   document.getElementById('open-cart')?.addEventListener('click',    openCart);
   document.getElementById('open-wishlist')?.addEventListener('click', openWishlist);
 
-  /* Close buttons */
   document.getElementById('close-cart')?.addEventListener('click',    () => closeSidePanel('cart-panel'));
   document.getElementById('close-wishlist')?.addEventListener('click', () => closeSidePanel('wishlist-panel'));
 
-  /* Shared backdrop */
   document.getElementById('panel-backdrop')?.addEventListener('click', () => {
     closeSidePanel('cart-panel');
     closeSidePanel('wishlist-panel');
   });
 
-  /* Initial badge sync */
   updateCartBadge();
   updateWishlistBadge();
 });

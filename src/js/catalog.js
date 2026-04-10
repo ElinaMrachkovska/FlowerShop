@@ -1,22 +1,5 @@
-/**
- * catalog.js
- * ----------
- * Модальне вікно «Каталог насіння» із фільтрацією.
- *
- * Залежності: seeds-data.js (SEEDS_DB має бути доступна глобально)
- *
- * Логіка:
- *  - При кліку на #open-catalog відкривається модальне вікно
- *  - Фільтри: сезон, тип (однорічний/дворічний/багаторічний), висота, колір
- *  - Фільтри можна комбінувати (AND-логіка)
- *  - Пошук за назвою / латинською назвою
- *  - Скидання фільтрів кнопкою «Скинути»
- *  - Лічильник знайдених результатів
- */
-
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* ── DOM-посилання ────────────────────────────────────────────── */
   const openBtn     = document.getElementById('open-catalog');
   const modal       = document.getElementById('catalog-modal');
   const closeBtn    = document.getElementById('catalog-close');
@@ -26,16 +9,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const searchInput = document.getElementById('cat-search');
   const resetBtn    = document.getElementById('cat-reset');
 
-  /* Фільтри */
   const filterSeason    = document.getElementById('filter-season');
   const filterLifecycle = document.getElementById('filter-lifecycle');
   const filterHeight    = document.getElementById('filter-height');
   const filterColor     = document.getElementById('filter-color');
   const filterSun       = document.getElementById('filter-sun');
 
-  if (!modal || !openBtn) return; // guard
+  if (!modal || !openBtn) return;
 
-  /* ── Відкрити / закрити модальне вікно ──────────────────────── */
   function openModal() {
     modal.classList.add('open');
     backdrop.classList.add('open');
@@ -58,17 +39,10 @@ document.addEventListener('DOMContentLoaded', () => {
   closeBtn.addEventListener('click',    closeModal);
   backdrop.addEventListener('click',    closeModal);
 
-  /* Закрити по Escape */
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
   });
 
-  /* ── Фільтрація ──────────────────────────────────────────────── */
-
-  /**
-   * Зібрати поточні значення всіх фільтрів.
-   * @returns {{ season, lifecycle, height, color, sun, query }}
-   */
   function getActiveFilters() {
     return {
       season:    filterSeason.value,
@@ -80,10 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
 
-  /**
-   * Повертає масив записів, що відповідають усім активним фільтрам.
-   * @returns {Array}
-   */
   function getFiltered() {
     const f = getActiveFilters();
 
@@ -105,9 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ── Рендеринг сітки карток ──────────────────────────────────── */
-
-  /** Людиночитані мітки для кожного поля */
   const SEASON_LABELS = {
     'early-spring': '🌱 Ранньовесняні',
     'mid-spring':   '🌷 Середньовесняні',
@@ -134,10 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
     'shade':         '🌑 Тінь',
   };
 
-  /**
-   * Відрендерити список карток у grid-контейнер.
-   * @param {Array} data — відфільтрований масив записів
-   */
   function renderGrid(data) {
     counter.textContent = `Знайдено: ${data.length} з ${SEEDS_DB.length}`;
 
@@ -178,11 +141,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }).join('');
   }
 
-  /**
-   * Перетворює англійську назву кольору на CSS-значення.
-   * @param {string} name
-   * @returns {string}
-   */
   function cssColor(name) {
     const map = {
       white:    '#fff',    cream:    '#fffde7', black:    '#222',
@@ -196,14 +154,12 @@ document.addEventListener('DOMContentLoaded', () => {
     return map[name] ?? name;
   }
 
-  /* ── Підписка на події фільтрів ─────────────────────────────── */
   [filterSeason, filterLifecycle, filterHeight, filterColor, filterSun].forEach((el) => {
     el.addEventListener('change', () => renderGrid(getFiltered()));
   });
 
   searchInput.addEventListener('input', () => renderGrid(getFiltered()));
 
-  /* ── Скинути фільтри ─────────────────────────────────────────── */
   resetBtn.addEventListener('click', () => {
     filterSeason.value    = '';
     filterLifecycle.value = '';

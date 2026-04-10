@@ -4,19 +4,22 @@
  * Handles:
  *  - Sticky shadow on scroll
  *  - Mobile navigation toggle
- *  - Language-switcher button events (delegates to i18n.applyLang)
+ *  - Search functionality
+ *  - Cart and Wishlist triggers
+ *  - Language-switcher button events
  *
- * Depends on: i18n.js  (applyLang must be defined globally)
+ * Depends on: i18n.js, cart.js (for openCart/openWishlist functions)
  */
 
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ── Sticky shadow ──────────────────────────────────────────── */
   const navbar = document.getElementById('navbar');
-
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 40);
-  }, { passive: true });
+  if (navbar) {
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+  }
 
 
   /* ── Mobile nav toggle ──────────────────────────────────────── */
@@ -42,46 +45,62 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ── Language-switcher buttons ──────────────────────────────── */
   document.querySelectorAll('.lang-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
-      applyLang(btn.dataset.lang);   // applyLang is exported from i18n.js
+      if (typeof applyLang === 'function') {
+        applyLang(btn.dataset.lang);
+      }
     });
   });
 
-});
-document.addEventListener('DOMContentLoaded', () => {
-    
-    // 1. Дія для пошуку
-    const searchTrigger = document.getElementById('trigger-search');
-    const searchInput = document.getElementById('product-search');
 
-    const performSearch = () => {
-        const query = searchInput.value.trim();
-        if (query) {
-            console.log("Шукаємо:", query);
-            // Тут твоя логіка фільтрації товарів або перехід на сторінку пошуку
-            // window.location.href = `/search?q=${query}`;
-        }
-    };
+  /* ── Search Functionality ───────────────────────────────────── */
+  const searchTrigger = document.getElementById('trigger-search');
+  const searchInput   = document.getElementById('product-search');
 
+  const performSearch = () => {
+    const query = searchInput.value.trim();
+    if (query) {
+      console.log("Шукаємо:", query);
+      // Logic for filtering products or redirecting
+      // Example: if catalog modal is used, update its search input and open it
+      const catSearch = document.getElementById('cat-search');
+      if (catSearch) {
+        catSearch.value = query;
+        catSearch.dispatchEvent(new Event('input'));
+        document.getElementById('open-catalog')?.click();
+      }
+    }
+  };
+
+  if (searchTrigger && searchInput) {
     searchTrigger.addEventListener('click', performSearch);
-    
-    // Дозволяємо шукати при натисканні Enter в інпуті
     searchInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') performSearch();
+      if (e.key === 'Enter') performSearch();
     });
+  }
 
-    // 2. Дія для кошика
-    const cartBtn = document.getElementById('open-cart');
+
+  /* ── Cart & Wishlist Triggers ───────────────────────────────── */
+  const cartBtn = document.getElementById('open-cart');
+  if (cartBtn) {
     cartBtn.addEventListener('click', () => {
-        console.log("Відкриваємо кошик");
-        // Якщо у тебе кошик — це модалка Bootstrap:
-        // const cartModal = new bootstrap.Modal(document.getElementById('modalCart'));
-        // cartModal.show();
+      if (typeof openCart === 'function') {
+        openCart();
+      } else {
+        console.log("Відкриваємо кошик (функція openCart не знайдена)");
+      }
     });
+  }
 
-    // 3. Дія для списку бажаного
-    const wishlistBtn = document.getElementById('open-wishlist');
+  const wishlistBtn = document.getElementById('open-wishlist');
+  if (wishlistBtn) {
     wishlistBtn.addEventListener('click', () => {
-        console.log("Перехід до обраного");
-        window.location.hash = "wishlist"; // або інша логіка
+      if (typeof openWishlist === 'function') {
+        openWishlist();
+      } else {
+        console.log("Перехід до обраного (функція openWishlist не знайдена)");
+        window.location.hash = "wishlist";
+      }
     });
+  }
+
 });

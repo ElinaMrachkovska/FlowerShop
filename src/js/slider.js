@@ -2,12 +2,6 @@
  * slider.js
  * ---------
  * Image slider / carousel for the #gallery section.
- *
- * Features:
- *  - Prev / Next buttons
- *  - Clickable dot indicators
- *  - Auto-play (5 s interval, resets on manual interaction)
- *  - Smooth CSS transform transition (defined in gallery.css)
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -16,19 +10,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const slides = document.querySelectorAll('.slide');
   const dots   = document.querySelectorAll('.dot');
 
-  if (!track || slides.length === 0) return;  // guard: slider not on page
+  if (!track || slides.length === 0) return;
 
   let currentIndex = 0;
   let autoplayTimer = null;
 
   /* ── Core: move to slide by index ──────────────────────────── */
   function goTo(index) {
-    /* Wrap around */
+    // Handle wrap around
     currentIndex = ((index % slides.length) + slides.length) % slides.length;
 
     track.style.transform = `translateX(-${currentIndex * 100}%)`;
 
-    /* Update dot states */
+    // Update dot states
     dots.forEach((dot, i) => {
       dot.classList.toggle('active', i === currentIndex);
     });
@@ -36,11 +30,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ── Auto-play ──────────────────────────────────────────────── */
   function startAutoplay() {
+    stopAutoplay(); // Clear existing to prevent double timers
     autoplayTimer = setInterval(() => goTo(currentIndex + 1), 5000);
   }
 
+  function stopAutoplay() {
+    if (autoplayTimer) {
+      clearInterval(autoplayTimer);
+      autoplayTimer = null;
+    }
+  }
+
   function resetAutoplay() {
-    clearInterval(autoplayTimer);
+    stopAutoplay();
     startAutoplay();
   }
 
@@ -65,8 +67,11 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ── Dot events ─────────────────────────────────────────────── */
   dots.forEach((dot) => {
     dot.addEventListener('click', () => {
-      goTo(Number(dot.dataset.index));
-      resetAutoplay();
+      const targetIndex = parseInt(dot.dataset.index, 10);
+      if (!isNaN(targetIndex)) {
+        goTo(targetIndex);
+        resetAutoplay();
+      }
     });
   });
 
@@ -87,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ── Pause autoplay when tab is hidden ──────────────────────── */
   document.addEventListener('visibilitychange', () => {
-    document.hidden ? clearInterval(autoplayTimer) : startAutoplay();
+    document.hidden ? stopAutoplay() : startAutoplay();
   });
 
   /* ── Init ───────────────────────────────────────────────────── */

@@ -1,9 +1,3 @@
-/* =============================================================
-   catalog.css
-   Модальне вікно каталогу насіння та картки сортів
-   ============================================================= */
-
-/* ── Backdrop ─────────────────────────────────────────────────── */
 #catalog-backdrop {
   position:   fixed;
   inset:      0;
@@ -20,7 +14,6 @@
   pointer-events: auto;
 }
 
-/* ── Modal shell ──────────────────────────────────────────────── */
 #catalog-modal {
   position:      fixed;
   inset:         0;
@@ -41,7 +34,6 @@
   transform:      translateY(0);
 }
 
-/* ── Inner box ────────────────────────────────────────────────── */
 .catalog-inner {
   background:    var(--white);
   border-radius: 24px;
@@ -54,7 +46,6 @@
   overflow:      hidden;
 }
 
-/* ── Header ───────────────────────────────────────────────────── */
 .catalog-header {
   display:         flex;
   align-items:     center;
@@ -96,7 +87,6 @@
   color:      #e53935;
 }
 
-/* ── Filter bar ───────────────────────────────────────────────── */
 .catalog-filters {
   display:     flex;
   flex-wrap:   wrap;
@@ -108,7 +98,6 @@
   align-items: center;
 }
 
-/* Search input */
 .cat-search-wrap {
   position:    relative;
   flex:        1;
@@ -143,7 +132,6 @@
   outline:      none;
 }
 
-/* Filter selects */
 .cat-select {
   border:        2px solid #e8f5e9;
   border-radius: 10px;
@@ -155,7 +143,6 @@
   color:         var(--dark-text);
   cursor:        pointer;
   transition:    border-color var(--transition);
-  -webkit-appearance: auto;
 }
 
 .cat-select:focus {
@@ -163,7 +150,6 @@
   outline:      none;
 }
 
-/* Reset button */
 #cat-reset {
   background:    var(--spring-green);
   color:         var(--white);
@@ -183,7 +169,6 @@
   transform:  translateY(-1px);
 }
 
-/* Counter */
 #catalog-counter {
   font-size:  0.8rem;
   font-weight: 700;
@@ -192,19 +177,16 @@
   white-space: nowrap;
 }
 
-/* ── Scrollable grid area ─────────────────────────────────────── */
 #catalog-grid {
   overflow-y:  auto;
   padding:     1.25rem 1.75rem 1.75rem;
   flex:        1;
 
-  /* CSS grid: auto-fill колонки від 280px */
   display:               grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap:                   1rem;
   align-content:         start;
 
-  /* Custom scrollbar */
   scrollbar-width:       thin;
   scrollbar-color:       #c8e6c9 transparent;
 }
@@ -213,7 +195,6 @@
 #catalog-grid::-webkit-scrollbar-track { background: transparent; }
 #catalog-grid::-webkit-scrollbar-thumb { background: #c8e6c9; border-radius: 4px; }
 
-/* ── Seed card ────────────────────────────────────────────────── */
 .cat-card {
   background:    var(--light-bg);
   border:        1.5px solid #e8f5e9;
@@ -230,7 +211,6 @@
   border-color: var(--spring-green);
 }
 
-/* Emoji icon */
 .cat-card__emoji {
   font-size:   2rem;
   line-height: 1;
@@ -240,7 +220,6 @@
   padding-top: 0.1rem;
 }
 
-/* Text body */
 .cat-card__body {
   flex: 1;
   min-width: 0;
@@ -272,12 +251,10 @@
   line-height:   1.5;
   margin-bottom: 0.6rem;
   display:       -webkit-box;
-  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow:      hidden;
 }
 
-/* Tag pills ── */
 .cat-card__tags {
   display:   flex;
   flex-wrap: wrap;
@@ -298,7 +275,6 @@
 .tag-height    { background: #fff3e0; color: #e65100; }
 .tag-sun       { background: #fffde7; color: #f57f17; }
 
-/* Color dots ── */
 .cat-card__colors {
   display: flex;
   gap:     4px;
@@ -314,7 +290,6 @@
   flex-shrink:   0;
 }
 
-/* ── Empty state ──────────────────────────────────────────────── */
 .cat-empty {
   grid-column: 1 / -1;
   text-align:  center;
@@ -324,7 +299,6 @@
   line-height: 1.8;
 }
 
-/* ── Trigger link in hero ─────────────────────────────────────── */
 #open-catalog {
   cursor:          pointer;
   color:           var(--spring-green);
@@ -338,7 +312,6 @@
   color: var(--spring-pink);
 }
 
-/* ── Responsive ───────────────────────────────────────────────── */
 @media (max-width: 640px) {
   .catalog-inner {
     max-height: 95vh;

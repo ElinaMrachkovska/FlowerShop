@@ -1,24 +1,7 @@
-/**
- * seeds-data.js
- * -------------
- * База даних 200 сортів насіння квітів.
- *
- * Кожен запис містить:
- *  id          {number}   — унікальний ідентифікатор
- *  name        {string}   — назва сорту (українська)
- *  latin       {string}   — латинська назва
- *  emoji       {string}   — декоративний емодзі
- *  season      {string[]} — масив сезонів: 'early-spring' | 'mid-spring' | 'late-spring' | 'summer' | 'autumn'
- *  lifecycle   {string}   — 'annual' | 'biennial' | 'perennial'
- *  height      {string}   — 'low' (<30 cm) | 'medium' (30–70 cm) | 'tall' (>70 cm)
- *  color       {string[]} — масив кольорів квітки
- *  sun         {string}   — 'full-sun' | 'partial-shade' | 'shade'
- *  desc        {string}   — коротке україномовне описання
- */
 
 const SEEDS_DB = [
 
-  /* ── РАННЬОВЕСНЯНІ (early-spring) ────────────────────────────── */
+
   { id:  1, name: "Крокус Жоффруа",        latin: "Crocus vernus 'Jeanne d'Arc'",   emoji:"🌸", season:["early-spring"],             lifecycle:"perennial", height:"low",    color:["white","purple"],   sun:"full-sun",       desc:"Один із перших вісників весни, білосніжні чашечки з фіолетовими жилками." },
   { id:  2, name: "Підсніжник Флоре Плено",latin: "Galanthus nivalis 'Flore Pleno'",emoji:"⚪", season:["early-spring"],             lifecycle:"perennial", height:"low",    color:["white"],            sun:"partial-shade",  desc:"Махровий підсніжник із подвоєними пелюстками, дуже ніжний." },
   { id:  3, name: "Проліска Сибірська",    latin: "Scilla siberica",                emoji:"💙", season:["early-spring"],             lifecycle:"perennial", height:"low",    color:["blue"],             sun:"partial-shade",  desc:"Яскраво-блакитні дзвіночки — невибагливий килим під деревами." },
@@ -30,7 +13,7 @@ const SEEDS_DB = [
   { id:  9, name: "Нарцис Февруарі Голд",  latin: "Narcissus 'February Gold'",      emoji:"💛", season:["early-spring"],             lifecycle:"perennial", height:"medium", color:["yellow"],           sun:"full-sun",       desc:"Мініатюрний нарцис із раннім жовтим цвітінням — один із перших." },
   { id: 10, name: "Нарцис Тете-а-Тете",    latin: "Narcissus 'Tête-à-Tête'",        emoji:"💛", season:["early-spring"],             lifecycle:"perennial", height:"low",    color:["yellow"],           sun:"full-sun",       desc:"Компактний карликовий нарцис, ідеальний для вазонів і рокаріїв." },
 
-  /* ── СЕРЕДНЬОВЕСНЯНІ (mid-spring) ────────────────────────────── */
+
   { id: 11, name: "Тюльпан Кейзерскрон",   latin: "Tulipa 'Keizerskroon'",          emoji:"🌷", season:["mid-spring"],               lifecycle:"perennial", height:"medium", color:["red","yellow"],     sun:"full-sun",       desc:"Класичний двоколірний тюльпан із яскраво-червоними краями на жовтому тлі." },
   { id: 12, name: "Тюльпан Блек Квін",     latin: "Tulipa 'Queen of Night'",        emoji:"🖤", season:["mid-spring"],               lifecycle:"perennial", height:"medium", color:["purple","black"],   sun:"full-sun",       desc:"Містичний темно-фіолетовий тюльпан, майже чорний — справжній колекційний." },
   { id: 13, name: "Тюльпан Фрінжд Бьюті",  latin: "Tulipa 'Fringed Beauty'",        emoji:"🌷", season:["mid-spring"],               lifecycle:"perennial", height:"medium", color:["orange","yellow"],  sun:"full-sun",       desc:"Бахромчасті краї пелюсток надають квітці вигляду ручної роботи." },
@@ -42,7 +25,6 @@ const SEEDS_DB = [
   { id: 19, name: "Аллюм Гіголь",          latin: "Allium giganteum",               emoji:"💜", season:["mid-spring","late-spring"],  lifecycle:"perennial", height:"tall",   color:["purple"],           sun:"full-sun",       desc:"Велетенські фіолетові кулі до 15 см в діаметрі — вражаючий акцент." },
   { id: 20, name: "Зірочки Іудині",        latin: "Ornithogalum umbellatum",        emoji:"⭐", season:["mid-spring"],               lifecycle:"perennial", height:"low",    color:["white"],            sun:"full-sun",       desc:"Витончені біло-зелені зірочки, що вкривають газон тисячами квіток." },
 
-  /* ── ПІЗНЬОВЕСНЯНІ (late-spring) ────────────────────────────── */
   { id: 21, name: "Іриc Германський Ренегейд",latin:"Iris germanica 'Renegade'",    emoji:"💜", season:["late-spring"],              lifecycle:"perennial", height:"tall",   color:["purple","blue"],    sun:"full-sun",       desc:"Пишний борідчастий ірис із глибоко-фіолетовими пелюстками та блакитним відтінком." },
   { id: 22, name: "Іриc Германський Голд Ламп",latin:"Iris germanica 'Gold Lamp'",  emoji:"💛", season:["late-spring"],              lifecycle:"perennial", height:"tall",   color:["yellow"],           sun:"full-sun",       desc:"Яскраво-жовтий борідчастий ірис із насиченим ароматом." },
   { id: 23, name: "Півонія Сара Бернар",   latin: "Paeonia lactiflora 'Sarah Bernhardt'", emoji:"🌸", season:["late-spring"],        lifecycle:"perennial", height:"medium", color:["pink"],             sun:"full-sun",       desc:"Культова ніжно-рожева махрова півонія з солодким ароматом." },
@@ -54,7 +36,7 @@ const SEEDS_DB = [
   { id: 29, name: "Маргаритка Белліс",     latin: "Bellis perennis 'Tasso'",       emoji:"🌼", season:["early-spring","late-spring"],lifecycle:"biennial", height:"low",    color:["white","pink","red"],          sun:"full-sun",      desc:"Помпонна маргаритка — невичерпне цвітіння від весни до осені." },
   { id: 30, name: "Альпійська Гвоздика",   latin: "Dianthus alpinus",              emoji:"🌸", season:["late-spring","summer"],     lifecycle:"perennial", height:"low",    color:["pink","red"],       sun:"full-sun",       desc:"Стійка скельна гвоздика з яскравими карминовими квітками." },
 
-  /* ── ЛІТНІ (summer) ──────────────────────────────────────────── */
+
   { id: 31, name: "Троянда Іспіріт Де Монако",latin:"Rosa 'Princesse de Monaco'",  emoji:"🌹", season:["summer","autumn"],          lifecycle:"perennial", height:"medium", color:["white","pink"],     sun:"full-sun",       desc:"Елегантна чайно-гібридна троянда з білими пелюстками та рожевим краєм." },
   { id: 32, name: "Троянда Блак Беккара",  latin: "Rosa 'Black Baccara'",          emoji:"🥀", season:["summer","autumn"],          lifecycle:"perennial", height:"medium", color:["red","black"],      sun:"full-sun",       desc:"Темно-кривяво-червона троянда — найтемніша із сучасних сортів." },
   { id: 33, name: "Соняшник Ведмедик",     latin: "Helianthus annuus 'Teddy Bear'",emoji:"🌻", season:["summer"],                   lifecycle:"annual",    height:"medium", color:["yellow"],           sun:"full-sun",       desc:"Пухнастий махровий соняшник — улюбленець дітей та флористів." },
@@ -106,7 +88,7 @@ const SEEDS_DB = [
   { id: 79, name: "Фуксія Дощ Тропіків",    latin: "Fuchsia 'Voodoo'",             emoji:"💜", season:["summer","autumn"],          lifecycle:"annual",    height:"medium", color:["purple","red"],     sun:"partial-shade",  desc:"Розкішні підвісні фуксії з контрастними червоно-фіолетовими квітами." },
   { id: 80, name: "Суниця Альпійська Руген",latin: "Fragaria vesca 'Rugen'",       emoji:"🍓", season:["late-spring","summer"],     lifecycle:"perennial", height:"low",    color:["white"],            sun:"full-sun",       desc:"Декоративна лісова суниця — їстівні ягоди та гарне квіткове покривало." },
 
-  /* ── Змішані та осінні ───────────────────────────────────────── */
+
   { id: 81, name: "Хризантема Мультифлора Аньяно",latin:"Chrysanthemum 'Anjana'",  emoji:"🌼", season:["autumn"],                   lifecycle:"perennial", height:"medium", color:["yellow","orange"],  sun:"full-sun",       desc:"Компактна кулеподібна хризантема, вкрита золотими квітками восени." },
   { id: 82, name: "Хризантема Зоряний Мотив",latin:"Chrysanthemum 'Spider Anastasia'",emoji:"💜",season:["autumn"],                lifecycle:"perennial", height:"tall",   color:["purple","green"],   sun:"full-sun",       desc:"Незвичайна «павутинна» хризантема з тонкими зігнутими пелюстками." },
   { id: 83, name: "Астра Новобельгійська Блу",latin:"Aster novi-belgii 'Blue Boy'", emoji:"💙", season:["autumn"],                   lifecycle:"perennial", height:"medium", color:["blue","purple"],    sun:"full-sun",       desc:"Осінній блакитний водоспад квіток — невід'ємна частина саду вересня." },
@@ -118,7 +100,7 @@ const SEEDS_DB = [
   { id: 89, name: "Кнауція Македонська",    latin: "Knautia macedonica",            emoji:"❤️", season:["summer","autumn"],          lifecycle:"perennial", height:"medium", color:["red","burgundy"],   sun:"full-sun",       desc:"Темно-малинові «ґудзики» на ажурних стеблах — улюблений корм бджіл." },
   { id: 90, name: "Тетранеурис Хербстзонне",latin:"Tetraneuris acaulis",            emoji:"🌼", season:["summer"],                   lifecycle:"perennial", height:"low",    color:["yellow"],           sun:"full-sun",       desc:"Гірська жовта ромашка — морозостійка та дуже довговічна." },
 
-  /* ── Ще 110 записів — різноманітні ────────────────────────────── */
+
   { id: 91, name: "Алісум Годі",            latin: "Lobularia maritima 'Aphrodite'",emoji:"⚪", season:["summer","autumn"],          lifecycle:"annual",    height:"low",    color:["white","pink","purple"],       sun:"full-sun",    desc:"Килим медового аромату та крихітних квіток — обрамлення клумби." },
   { id: 92, name: "Льон Голубий",           latin: "Linum usitatissimum",           emoji:"💙", season:["summer"],                   lifecycle:"annual",    height:"medium", color:["blue"],             sun:"full-sun",       desc:"Ніжно-блакитні чашечки льону — символ природньої простоти." },
   { id: 93, name: "Волошка Польова",        latin: "Centaurea cyanus",              emoji:"💙", season:["early-spring","summer"],    lifecycle:"annual",    height:"medium", color:["blue","pink","white"],         sun:"full-sun",    desc:"Класична польова волошка — душа лугу та партнер жита." },

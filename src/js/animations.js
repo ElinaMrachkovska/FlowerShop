@@ -1,30 +1,5 @@
-/**
- * animations.js
- * -------------
- * All GSAP-powered animations for the landing page:
- *
- *  1. Floating petals along MotionPath curves (decorative SVG overlay)
- *  2. Hero illustration continuous gentle float
- *  3. Scroll-triggered fade-in for .reveal elements
- *
- * Depends on:
- *  - GSAP core          (gsap.min.js)
- *  - MotionPathPlugin   (MotionPathPlugin.min.js)
- *  - ScrollTrigger      (ScrollTrigger.min.js)
- *
- * All three CDN scripts must be loaded before this file.
- */
-
-/* ── Register GSAP plugins ──────────────────────────────────────── */
 gsap.registerPlugin(MotionPathPlugin, ScrollTrigger);
 
-
-/* ── 1. Floating petals ─────────────────────────────────────────── */
-
-/**
- * Configuration for each animated petal.
- * @type {Array<{ id: string, path: string, duration: number, delay: number }>}
- */
 const PETAL_CONFIG = [
   { id: '#p1', path: '#path1', duration: 14, delay: 0   },
   { id: '#p2', path: '#path2', duration: 18, delay: 1.5 },
@@ -35,7 +10,6 @@ const PETAL_CONFIG = [
 ];
 
 PETAL_CONFIG.forEach(({ id, path, duration, delay }) => {
-  /* Move along SVG motion path */
   gsap.to(id, {
     duration,
     delay,
@@ -49,7 +23,6 @@ PETAL_CONFIG.forEach(({ id, path, duration, delay }) => {
     },
   });
 
-  /* Gentle opacity pulse (yoyo fade in/out) */
   gsap.to(id, {
     duration: duration * 0.15,
     delay,
@@ -60,17 +33,6 @@ PETAL_CONFIG.forEach(({ id, path, duration, delay }) => {
   });
 });
 
-
-/* ── 2. Hero illustration — gentle float ────────────────────────── */
-
-
-
-/* ── 3. Scroll-triggered reveal for .reveal elements ────────────── */
-
-/**
- * Uses IntersectionObserver for lightweight, CSS-transition-driven
- * fade-in. GSAP ScrollTrigger is reserved for more complex sequences.
- */
 const revealObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
@@ -85,8 +47,6 @@ const revealObserver = new IntersectionObserver(
 
 document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
 
-
-/* ── 4. Hero stats — staggered count-up animation ───────────────── */
 ScrollTrigger.create({
   trigger: '#hero',
   start:   'top 80%',
@@ -98,8 +58,6 @@ ScrollTrigger.create({
       ease:        'power1.out',
       stagger:     0.2,
       snap:        { textContent: 1 },
-      /* Note: works for pure-number elements; elements with '+' or '%'
-         are handled via CSS; this targets the numeric part visually. */
     });
   },
 });

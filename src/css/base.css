@@ -1,11 +1,6 @@
-/* =============================================================
-   base.css
-   CSS custom properties, reset, typography, shared utilities
-   ============================================================= */
 
-/* ── Custom properties ──────────────────────────────────────── */
 :root {
-  /* Brand palette */
+
   --spring-green:    #4caf50;
   --spring-green-lt: #66bb6a;
   --spring-yellow:   #ffca28;
@@ -14,21 +9,20 @@
   --spring-lavender: #9c7bb5;
   --spring-sky:      #81d4fa;
 
-  /* Neutrals */
+
   --cream:      #fffde7;
   --light-bg:   #f9fbe7;
   --white:      #ffffff;
   --dark-text:  #2e2e2e;
   --mid-text:   #5d5d5d;
 
-  /* Shadows */
+
   --card-shadow: 0 8px 32px rgba(76, 175, 80, 0.15);
 
-  /* Transitions */
+
   --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ── Reset ──────────────────────────────────────────────────── */
 *,
 *::before,
 *::after {
@@ -48,12 +42,10 @@ body {
   overflow-x:   hidden;
 }
 
-/* ── Typography ─────────────────────────────────────────────── */
 h1, h2, h3, h4 {
   font-family: 'Playfair Display', serif;
 }
 
-/* ── Shared section helpers ─────────────────────────────────── */
 .section-title {
   font-size:     clamp(1.8rem, 4vw, 2.8rem);
   color:         var(--dark-text);
@@ -64,15 +56,6 @@ h1, h2, h3, h4 {
   color: var(--spring-green);
 }
 
-.divider {
-  width:         60px;
-  height:        4px;
-  background:    linear-gradient(90deg, var(--spring-pink), var(--spring-yellow));
-  border-radius: 4px;
-  margin:        0.5rem 0 2rem;
-}
-
-/* ── Feature pill ────────────────────────────────────────────── */
 .feature-pill {
   display:       inline-flex;
   align-items:   center;
@@ -88,7 +71,6 @@ h1, h2, h3, h4 {
   box-shadow:    0 3px 10px rgba(76, 175, 80, 0.1);
 }
 
-/* ── CTA buttons ─────────────────────────────────────────────── */
 .btn-primary-custom {
   background:    linear-gradient(135deg, var(--spring-green), var(--spring-green-lt));
   color:         var(--white);
@@ -110,7 +92,6 @@ h1, h2, h3, h4 {
   color:      var(--white);
 }
 
-/* ── Scroll-reveal utility ───────────────────────────────────── */
 .reveal {
   opacity:    0;
   transform:  translateY(30px);
@@ -122,7 +103,6 @@ h1, h2, h3, h4 {
   transform: translateY(0);
 }
 
-/* ── Petal canvas (fixed decorative layer) ───────────────────── */
 #petal-canvas {
   position:       fixed;
   top:            0;
@@ -134,10 +114,10 @@ h1, h2, h3, h4 {
   overflow:       hidden;
 }
 
-/* ── All sections sit above petal canvas ─────────────────────── */
 section,
 nav,
 footer {
   position: relative;
   z-index:  1;
 }
+

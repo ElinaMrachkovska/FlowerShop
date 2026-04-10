@@ -1,8 +1,3 @@
-/* =============================================================
-   hero.css
-   Full-height landing hero section
-   ============================================================= */
-
 #hero {
   position:    relative;
   min-height:  85vh;
@@ -16,13 +11,11 @@
     var(--light-bg);
 }
 
-/* ── Content column ──────────────────────────────────────────── */
 .hero-content {
   position: relative;
   z-index:  2;
 }
 
-/* ── Heading ─────────────────────────────────────────────────── */
 .hero-title {
   font-size:   clamp(2.4rem, 6vw, 4.5rem);
   line-height: 1.1;
@@ -32,7 +25,6 @@
 .hero-title .accent  { color: var(--spring-pink);  }
 .hero-title .accent2 { color: var(--spring-green); }
 
-/* ── Subtitle ────────────────────────────────────────────────── */
 .hero-subtitle {
   font-size:  clamp(1rem, 2.5vw, 1.25rem);
   color:      var(--mid-text);
@@ -40,7 +32,6 @@
   margin-top: 1rem;
 }
 
-/* ── Stats row ───────────────────────────────────────────────── */
 .hero-stats {
   display:     flex;
   gap:         2rem;
@@ -63,25 +54,23 @@
   color:     var(--mid-text);
 }
 
-/* ── Decorative SVG illustration (right side) ────────────────── */
 .hero-decor {
-  position: absolute; /* або relative, залежно від вашої верстки hero */
+  position: absolute; 
   top: 0;
   right: 0;
   width: 45%;
   height: 100%;
-  z-index: -1; /* відео має бути на фоні під текстом */
+  z-index: -1; 
   overflow: hidden;
 }
 
 .hero-video {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* відео заповнить весь простір без деформації */
-  /* Опціонально: додайте прозорість, щоб текст читався краще */
+  object-fit: cover;
   opacity: 0.6; 
 }
-/* ── Responsive ──────────────────────────────────────────────── */
+
 @media (max-width: 767px) {
   .hero-decor { display: none; }
 }
@@ -93,26 +82,23 @@
   top: -50px;
   rotate: -10deg;
   animation: pulse-on-load 1.5s ease-in-out;
-  animation-iteration-count: 2; /* тільки один раз при завантаженні */
+  animation-iteration-count: 2; 
   
   display: inline-block;
   padding: 14px 28px;
   font-weight: bold;
   color: #fff;
-  background: linear-gradient(135deg, #d49638, #dfe862f4); /* помаранчевий градієнт */
-  
+  background: linear-gradient(135deg, #d49638, #dfe862f4);
   border-radius: 50px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 0 20px 10px rgba(255, 152, 0, 0.6);
 }
 
-/* ефект при наведенні */
 .leaf:hover {
   transform: scale(1.2) rotate(-10deg);
   box-shadow: 0 8px 16px rgba(0,0,0,0.3);
 }
 
-/* ключові кадри для пульсації */
 @keyframes pulse-on-load {
   0%   { transform: scale(1) rotate(-10deg); }
   50%  { transform: scale(1.2) rotate(-10deg); }
@@ -120,23 +106,23 @@
 }
 
 .btn-outline {
-  display: inline-flex;          /* вирівнювання тексту по центру */
+  display: inline-flex;         
   align-items: center;
   justify-content: center;
   text-align: center;
 
-  border: 2px solid #ff9800;     /* помаранчевий бордер */
-  color: #ff9800;                /* текст у тон бордера */
+  border: 2px solid #ff9800;     
+  color: #ff9800;               
   background: transparent;
   border-radius: 50px;
   padding: 0.6rem 1.5rem;
   font-weight: bold;
-  transition: all 0.3s ease;     /* плавні ефекти */
+  transition: all 0.3s ease; 
 }
 
 .btn-outline:hover {
-  background: linear-gradient(135deg, #ff9800, #ffb74d); /* помаранчевий градієнт */
-  color: #fff;                   /* білий текст при наведенні */
-  transform: scale(1.1);         /* легке збільшення */
-  box-shadow: 0 6px 12px rgba(0,0,0,0.25); /* тінь */
+  background: linear-gradient(135deg, #ff9800, #ffb74d); 
+  color: #fff;                   
+  transform: scale(1.1);       
+  box-shadow: 0 6px 12px rgba(0,0,0,0.25); 
 }

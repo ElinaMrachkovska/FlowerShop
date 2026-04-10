@@ -26,10 +26,10 @@
 }
 .phone-link:hover { color: var(--white); }
 
-/* ── Search wrapper ──────────────────────────────────────────── */
+
 .search-wrapper {
-  position:   relative;
-  display:    flex;
+  position:    relative;
+  display:     flex;
   align-items: center;
 }
 
@@ -37,30 +37,41 @@
   background:    rgba(255,255,255,.1);
   border:        1.5px solid rgba(255,255,255,.2);
   border-radius: 20px;
-  padding:       .35rem .9rem .35rem .9rem;
+
+  padding:       .38rem 2.2rem .38rem 1rem;
   color:         var(--white);
   font-size:     .83rem;
-  width:         200px;
-  transition:    border-color var(--transition), background var(--transition);
+  width:         220px;
+  transition:    border-color var(--transition), background var(--transition), width var(--transition);
   outline:       none;
 }
 .search-wrapper input::placeholder { color: rgba(255,255,255,.4); }
 .search-wrapper input:focus {
   border-color: var(--spring-green);
   background:   rgba(255,255,255,.15);
-  width:        240px;
+  width:        260px;
 }
+
 
 .search-btn {
-  margin-left: .4rem;
+  position:    absolute;
+  right:       .7rem;         
+  top:         50%;
+  transform:   translateY(-50%);
   cursor:      pointer;
-  font-size:   1.1rem;
+  font-size:   1rem;
   line-height: 1;
-  transition:  transform var(--transition);
-}
-.search-btn:hover { transform: scale(1.2); }
+  color:       rgba(255,255,255,.55);
+  transition:  color var(--transition), transform var(--transition);
 
-/* ── Icon items (wishlist / user) ────────────────────────────── */
+  pointer-events: auto;
+}
+.search-btn:hover {
+  color:     var(--spring-yellow);
+  transform: translateY(-50%) scale(1.15);
+}
+
+
 .icon-item {
   position:    relative;
   cursor:      pointer;
@@ -71,7 +82,6 @@
 }
 .icon-item:hover { transform: scale(1.15); }
 
-/* Badge counter on icons */
 #wishlist-count {
   position:      absolute;
   top:           -6px;
@@ -89,7 +99,7 @@
   pointer-events: none;
 }
 
-/* ── Cart pill ────────────────────────────────────────────────── */
+
 .cart-custom-pill {
   display:       flex;
   align-items:   center;
@@ -121,9 +131,6 @@
   justify-content: center;
 }
 
-/* ============================================================
-   AUTH MODAL  (Bootstrap .modal override + custom styles)
-   ============================================================ */
 #modalAuth .modal-content {
   border-radius: 20px;
   border:        none;
@@ -143,7 +150,6 @@
   color:       var(--dark-text);
 }
 
-/* Tab switcher inside auth modal */
 .auth-tabs {
   display:     flex;
   gap:         0;
@@ -170,7 +176,6 @@
   border-color: var(--spring-green);
 }
 
-/* Auth form panels */
 .auth-panel { display: none; }
 .auth-panel.active { display: block; }
 
@@ -214,7 +219,6 @@
   box-shadow: 0 10px 28px rgba(76,175,80,.4);
 }
 
-/* Auth message area */
 .auth-message {
   font-size:  .85rem;
   font-weight: 700;
@@ -225,15 +229,16 @@
 .auth-message.success { color: var(--spring-green); }
 .auth-message.error   { color: #e53935; }
 
-/* Logged-in user display */
 .user-greeting {
   display:     none;
   align-items: center;
   gap:         .5rem;
   font-size:   .82rem;
-  color:       rgba(255,255,255,.8);
+  color:       rgba(255,255,255,.85);
+  white-space: nowrap;
 }
-.user-greeting.visible { display: flex; }
+
+.user-greeting.visible { display: inline-flex; }
 
 .user-avatar {
   width:         30px; height: 30px;
@@ -259,9 +264,6 @@
 }
 .btn-logout:hover { border-color: var(--spring-pink); color: var(--spring-pink); }
 
-/* ============================================================
-   SIDE PANEL  (shared base for Cart & Wishlist)
-   ============================================================ */
 .side-panel {
   position:   fixed;
   top:        0; right: 0;
@@ -291,37 +293,53 @@
   pointer-events: auto;
 }
 
-/* Panel header */
 .panel-header {
   display:         flex;
   align-items:     center;
   justify-content: space-between;
-  padding:         1.25rem 1.5rem;
+  gap:             .75rem;
+  flex-wrap:       nowrap;
+  padding:         1rem 1.25rem;
   border-bottom:   2px solid #e8f5e9;
   background:      linear-gradient(135deg, #f1f8e9, var(--white));
   flex-shrink:     0;
+  min-height:      60px;
 }
 
 .panel-header h3 {
   font-family: 'Playfair Display', serif;
-  font-size:   1.3rem;
+  font-size:   1.2rem;
   color:       var(--dark-text);
   margin:      0;
+  flex:        1 1 auto;
+  white-space: nowrap;
+  overflow:    hidden;
+  text-overflow: ellipsis;
 }
 
 .panel-close {
   background:    transparent;
-  border:        none;
+  border:        2px solid transparent;
   cursor:        pointer;
   color:         var(--mid-text);
-  width:         36px; height: 36px;
-  border-radius: 50%;
-  display:       flex; align-items: center; justify-content: center;
-  transition:    background var(--transition), color var(--transition);
-}
-.panel-close:hover { background: #ffebee; color: #e53935; }
 
-/* Panel scrollable body */
+  width:         34px;
+  height:        34px;
+  min-width:     34px;
+  border-radius: 50%;
+  display:       flex;
+  align-items:   center;
+  justify-content: center;
+  flex-shrink:   0;
+  transition:    background var(--transition), color var(--transition), border-color var(--transition);
+}
+.panel-close:hover {
+  background:   #ffebee;
+  color:        #e53935;
+  border-color: #ffcdd2;
+}
+
+
 .panel-body {
   flex:       1;
   overflow-y: auto;
@@ -330,14 +348,14 @@
   scrollbar-color: #c8e6c9 transparent;
 }
 
-/* Panel footer */
+
 .panel-footer {
   padding:    1rem 1.25rem;
   border-top: 2px solid #e8f5e9;
   flex-shrink: 0;
 }
 
-/* ── Empty state ─────────────────────────────────────────────── */
+
 .panel-empty {
   text-align:  center;
   padding:     3rem 1rem;
@@ -346,7 +364,7 @@
   line-height: 1.8;
 }
 
-/* ── Item card shared ─────────────────────────────────────────── */
+
 .panel-item {
   display:       flex;
   align-items:   flex-start;
@@ -394,7 +412,7 @@
   font-size:   .9rem;
 }
 
-/* Quantity control */
+
 .qty-control {
   display:     flex;
   align-items: center;
@@ -422,7 +440,6 @@
   font-size:   .9rem;
 }
 
-/* Remove button */
 .btn-remove-item {
   background:    transparent;
   border:        none;
@@ -436,7 +453,6 @@
 }
 .btn-remove-item:hover { color: #e53935; }
 
-/* ── Cart total ───────────────────────────────────────────────── */
 .cart-total-row {
   display:         flex;
   justify-content: space-between;
@@ -469,7 +485,6 @@
   box-shadow: 0 10px 28px rgba(240,98,146,.45);
 }
 
-/* ── Wishlist "move to cart" button ──────────────────────────── */
 .btn-to-cart {
   background:    transparent;
   border:        2px solid var(--spring-green);
@@ -484,7 +499,6 @@
 }
 .btn-to-cart:hover { background: var(--spring-green); color: var(--white); }
 
-/* ── Search results dropdown ─────────────────────────────────── */
 #search-results {
   position:      absolute;
   top:           calc(100% + 6px);
@@ -514,7 +528,6 @@
 .search-result-item .sr-name  { font-size: .88rem; font-weight: 700; color: var(--dark-text); }
 .search-result-item .sr-latin { font-size: .72rem; color: var(--spring-green); font-style: italic; }
 
-/* ── Add-to-cart button in catalog cards ─────────────────────── */
 .btn-add-cart {
   background:    var(--spring-green);
   color:         var(--white);
@@ -545,7 +558,7 @@
 .btn-add-wish:hover,
 .btn-add-wish.wished { background: var(--spring-pink); color: var(--white); }
 
-/* Pill price tag on catalog cards */
+
 .cat-card__price {
   font-size:   .82rem;
   font-weight: 700;
@@ -553,7 +566,6 @@
   margin-bottom: .3rem;
 }
 
-/* ── Responsive ──────────────────────────────────────────────── */
 @media (max-width: 767px) {
   .utility-bar .container {
     flex-wrap: wrap;

@@ -2,28 +2,15 @@
  * i18n.js
  * -------
  * Translations dictionary and language-switching logic.
- *
- * Usage:
- *   import { applyLang } from './i18n.js';   // or include via <script>
- *   applyLang('en');
- *
- * Every HTML element that needs translation carries:
- *   data-i18n="key"             → innerHTML is replaced
- *   data-i18n-placeholder="key" → placeholder attribute is replaced
  */
 
-/* ── Translations ─────────────────────────────────────────────── */
 const translations = {
-
   /* ── Ukrainian ──────────────────────────────────────────────── */
   uk: {
-    /* Navbar */
     nav_register: "Реєстрація",
     nav_about:    "Про нас",
     nav_gallery:  "Галерея",
     nav_contacts: "Контакти",
-
-    /* Hero */
     hero_badge:    "100% натуральне насіння",
     hero_h1_1:     "Розквітніть свій сад",
     hero_h1_2:     "яскравими квітами",
@@ -34,12 +21,8 @@ const translations = {
     stat1_label:   "сортів насіння",
     stat2_label:   "задоволених клієнтів",
     stat3_label:   "схожість насіння",
-
-    /* Register section */
     reg_title: 'Дивіться та <span class="accent">реєструйтесь</span>',
     reg_sub:   "Перегляньте відео про вирощування квітів і залиште заявку на наш каталог",
-
-    /* Form */
     form_title:   "Отримайте каталог",
     form_sub:     "Залиште дані — ми надішлемо безкоштовний каталог насіння",
     form_fname:   "Ім'я *",
@@ -51,13 +34,9 @@ const translations = {
     ph_lname:     "Іваненко",
     ph_phone:     "+380 XX XXX XX XX",
     ph_email:     "email@example.com",
-
-    /* Form feedback messages (used by form.js) */
     form_success:      "✅ Дякуємо! Вашу заявку надіслано.",
     form_error:        "❌ Будь ласка, заповніть усі поля правильно.",
     form_server_error: "❌ Помилка сервера. Спробуйте пізніше.",
-
-    /* About */
     about_title: 'Чому обирають <span class="accent">FlowerSeeds</span>?',
     about_p1: "<strong>FlowerSeeds</strong> — сімейна компанія з 15-річним досвідом у насінництві. Ми співпрацюємо лише з перевіреними виробниками, що гарантують <strong>95–98% схожість</strong>.",
     about_p2: "Асортимент охоплює однорічні та багаторічні квіти, ґрунтопокривні, ампельні і балконні культури. Кожна пачка містить <strong>докладну інструкцію</strong> з вирощування.",
@@ -67,8 +46,6 @@ const translations = {
     pill3: "Консультація агронома",
     pill4: "Гарантія якості",
     pill5: "200+ сортів",
-
-    /* Gallery */
     gallery_title: 'Наша <span class="accent">галерея</span>',
     gallery_sub:   "Квіти, вирощені з нашого насіння",
     slide1_title: "Тюльпани Кейзерскрон",
@@ -81,8 +58,6 @@ const translations = {
     slide4_desc:  "Легкі та ніжні маки — створять природній луговий куточок у саду",
     slide5_title: "Троянда чайно-гібридна",
     slide5_desc:  "Ніжні троянди — королеви саду, вирощені з перевіреного насіння",
-
-    /* Footer */
     footer_tagline:  "Насіння квітів для вашої присадибної ділянки",
     footer_desc:     "Ми допомагаємо перетворити кожну ділянку на квітучий рай — з любов'ю до природи.",
     footer_nav:      "Навігація",
@@ -97,7 +72,6 @@ const translations = {
     nav_about:    "About",
     nav_gallery:  "Gallery",
     nav_contacts: "Contacts",
-
     hero_badge:    "100% natural seeds",
     hero_h1_1:     "Make your garden",
     hero_h1_2:     "bloom with bright",
@@ -108,10 +82,8 @@ const translations = {
     stat1_label:   "seed varieties",
     stat2_label:   "happy customers",
     stat3_label:   "germination rate",
-
-    reg_title: 'Watch &amp; <span class="accent">Register</span>',
+    reg_title: 'Watch & <span class="accent">Register</span>',
     reg_sub:   "Watch our flower growing video and leave a request for our free catalogue",
-
     form_title:   "Get Free Catalogue",
     form_sub:     "Leave your details — we'll send you a free seed catalogue",
     form_fname:   "First name *",
@@ -123,11 +95,9 @@ const translations = {
     ph_lname:     "Ivanova",
     ph_phone:     "+38 0XX XXX XX XX",
     ph_email:     "email@example.com",
-
     form_success:      "✅ Thank you! Your request has been sent.",
     form_error:        "❌ Please fill in all fields correctly.",
     form_server_error: "❌ Server error. Please try again later.",
-
     about_title: 'Why choose <span class="accent">FlowerSeeds</span>?',
     about_p1: "<strong>FlowerSeeds</strong> is a family company with 15 years of experience in seed production. We work only with trusted manufacturers who guarantee <strong>95–98% germination</strong>.",
     about_p2: "Our range covers annuals and perennials, ground cover, trailing and balcony cultures. Each pack includes <strong>detailed growing instructions</strong>.",
@@ -137,7 +107,6 @@ const translations = {
     pill3: "Agronomist advice",
     pill4: "Quality guarantee",
     pill5: "200+ varieties",
-
     gallery_title: 'Our <span class="accent">Gallery</span>',
     gallery_sub:   "Flowers grown from our seeds",
     slide1_title: "Keizerskroon Tulips",
@@ -150,7 +119,6 @@ const translations = {
     slide4_desc:  "Light and delicate poppies — create a natural meadow corner in your garden",
     slide5_title: "Hybrid Tea Rose",
     slide5_desc:  "Tender roses — queens of the garden, grown from verified seeds",
-
     footer_tagline:  "Flower seeds for your home garden",
     footer_desc:     "We help transform every plot into a blooming paradise — with love for nature.",
     footer_nav:      "Navigation",
@@ -165,7 +133,6 @@ const translations = {
     nav_about:    "O nas",
     nav_gallery:  "Galeria",
     nav_contacts: "Kontakt",
-
     hero_badge:    "100% naturalne nasiona",
     hero_h1_1:     "Rozwiń swój ogród",
     hero_h1_2:     "kolorowymi kwiatami",
@@ -176,10 +143,8 @@ const translations = {
     stat1_label:   "odmian nasion",
     stat2_label:   "zadowolonych klientów",
     stat3_label:   "kiełkowalność nasion",
-
     reg_title: 'Oglądaj i <span class="accent">rejestruj się</span>',
     reg_sub:   "Obejrzyj film o uprawie kwiatów i zostaw prośbę o nasz katalog",
-
     form_title:   "Otrzymaj katalog",
     form_sub:     "Zostaw dane — wyślemy bezpłatny katalog nasion",
     form_fname:   "Imię *",
@@ -191,11 +156,9 @@ const translations = {
     ph_lname:     "Kowalska",
     ph_phone:     "+48 XXX XXX XXX",
     ph_email:     "email@example.com",
-
     form_success:      "✅ Dziękujemy! Zgłoszenie zostało wysłane.",
     form_error:        "❌ Proszę wypełnić wszystkie pola poprawnie.",
     form_server_error: "❌ Błąd serwera. Spróbuj ponownie później.",
-
     about_title: 'Dlaczego wybierają <span class="accent">FlowerSeeds</span>?',
     about_p1: "<strong>FlowerSeeds</strong> to firma rodzinna z 15-letnim doświadczeniem w nasiennictwie. Współpracujemy wyłącznie z zaufanymi producentami gwarantującymi <strong>95–98% kiełkowalności</strong>.",
     about_p2: "Nasza oferta obejmuje kwiaty jednoletnie i wieloletnie, rośliny okrywowe, zwisające i balkonowe. Każde opakowanie zawiera <strong>szczegółową instrukcję</strong> uprawy.",
@@ -205,7 +168,6 @@ const translations = {
     pill3: "Konsultacja agronoma",
     pill4: "Gwarancja jakości",
     pill5: "200+ odmian",
-
     gallery_title: 'Nasza <span class="accent">galeria</span>',
     gallery_sub:   "Kwiaty wyhodowane z naszych nasion",
     slide1_title: "Tulipany Keizerskroon",
@@ -218,7 +180,6 @@ const translations = {
     slide4_desc:  "Lekkie i delikatne maki — stworzą naturalny łąkowy zakątek w ogrodzie",
     slide5_title: "Róża herbaciana",
     slide5_desc:  "Delikatne róże — królowe ogrodu, wyhodowane ze sprawdzonych nasion",
-
     footer_tagline:  "Nasiona kwiatów do Twojego ogrodu",
     footer_desc:     "Pomagamy przekształcić każdą działkę w kwitnący raj — z miłością do natury.",
     footer_nav:      "Nawigacja",
@@ -229,50 +190,54 @@ const translations = {
 };
 
 /**
- * Apply a language to the page without reload.
- *
- * @param {string} lang - Language code: 'uk' | 'en' | 'pl'
+ * Apply language to the page.
  */
 function applyLang(lang) {
-  const t = translations[lang];
-  if (!t) {
+  const tArr = translations[lang];
+  if (!tArr) {
     console.warn(`[i18n] Unknown language: "${lang}"`);
     return;
   }
 
-  /* Replace innerHTML for all data-i18n elements */
   document.querySelectorAll('[data-i18n]').forEach((el) => {
     const key = el.getAttribute('data-i18n');
-    if (t[key] !== undefined) {
-      el.innerHTML = t[key];
+    if (tArr[key] !== undefined) {
+      el.innerHTML = tArr[key];
     }
   });
 
-  /* Replace placeholder attribute */
   document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
     const key = el.getAttribute('data-i18n-placeholder');
-    if (t[key] !== undefined) {
-      el.placeholder = t[key];
+    if (tArr[key] !== undefined) {
+      el.placeholder = tArr[key];
     }
   });
 
-  /* Highlight the active language button */
   document.querySelectorAll('.lang-btn').forEach((btn) => {
     btn.classList.toggle('active', btn.dataset.lang === lang);
   });
 
-  /* Persist selection and expose for other modules */
   document.documentElement.setAttribute('data-lang', lang);
 }
 
 /**
- * Get a single translation string for the current active language.
- * Useful from other JS modules (e.g. form.js).
- *
- * @param  {string} key
- * @returns {string}
+ * Get a translation string.
  */
 function t(key) {
   const lang = document.documentElement.getAttribute('data-lang') || 'uk';
   return (translations[lang] && translations[lang][key]) ?? key;
 }
+
+// Initial setup
+document.addEventListener('DOMContentLoaded', () => {
+  const savedLang = localStorage.getItem('fs_lang') || 'uk';
+  applyLang(savedLang);
+
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lang = btn.dataset.lang;
+      localStorage.setItem('fs_lang', lang);
+      applyLang(lang);
+    });
+  });
+});

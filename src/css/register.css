@@ -1,14 +1,8 @@
-/* =============================================================
-   register.css
-   Video + registration form section
-   ============================================================= */
-
 #register {
   padding:    5rem 0;
   background: var(--white);
 }
 
-/* ── YouTube embed ───────────────────────────────────────────── */
 .video-wrapper {
   position:       relative;
   padding-bottom: 56.25%; /* 16:9 */
@@ -27,7 +21,6 @@
   border:   0;
 }
 
-/* ── Form card ───────────────────────────────────────────────── */
 .form-card {
   background:    var(--cream);
   border-radius: 20px;
@@ -48,7 +41,6 @@
   margin-bottom: 1.5rem;
 }
 
-/* ── Form fields ─────────────────────────────────────────────── */
 .form-group {
   margin-bottom: 1.1rem;
 }
@@ -78,7 +70,7 @@
   outline:      none;
 }
 
-/* ── Submit button ───────────────────────────────────────────── */
+
 .btn-submit {
   width:         100%;
   background:    linear-gradient(135deg, var(--spring-pink), var(--spring-pink-dk));
@@ -104,7 +96,6 @@
   cursor:  not-allowed;
 }
 
-/* ── Form response message ───────────────────────────────────── */
 #form-message {
   margin-top: 1rem;
   font-weight: 600;
@@ -116,7 +107,6 @@
 #form-message.success { color: var(--spring-green); }
 #form-message.error   { color: #e53935; }
 
-/* ── Responsive ──────────────────────────────────────────────── */
 @media (max-width: 767px) {
   .form-card { padding: 1.5rem; }
 }
